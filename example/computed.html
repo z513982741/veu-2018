@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>conputed option计算选项</title>
+	<script src="../assets/js/vue.js"></script>
+</head>
+<body>
+	<h1>conputed option计算选项</h1>
+	<hr>
+	<div id="app">
+		{{newPrice}}
+		<dl v-for="item,index in reverNews">
+			<dt>{{item.title}}</dt>
+			<dd>{{item.date}}</dd>
+		</dl>
+	</div>
+	<script>
+	var list = [
+		{
+			'title':'仅剩两天!北京市积分落户申报将于6月14日24时结束',
+			'date':'2018-04-05'
+		},{
+			'title':'强对流天气蓝色预警 北京山东等7省局地有雷暴大风',
+			'date':'2018-08-07'
+		},{
+			'title':'抗癌药防癌疫苗全国性缺货 药品产能不足问题需解决',
+			'date':'2018-12-09'
+		},{
+			'title':'联合国常务副秘书长:上合组织扩员后影响力扩大',
+			'date':'2017-06-13'
+		}
+	]
+	var app = new Vue({
+		el: "#app",
+		data: {
+			price: 100,
+			list: list
+		},
+		mounted: function(){
+			//console.log(this.list)
+		},
+		methods: {
+			sortNumber: function (a,b){
+				return new date(a.date) - new date(b.date)
+			}
+		},
+		computed: {
+			newPrice: function(){
+				// 不污染原始数据
+				return this.price = "￥" + this.price +'元';
+			},
+			reverNews: function(){
+				// 比大小排序
+				function sortNumber (a,b){
+					// 传入date值进行对比
+					return new Date(b.date) - new Date(a.date)
+				}
+				return this.list.sort(sortNumber);
+				// 反转 reverse()
+				// return this.list.reverse();
+			}
+		}
+	})
+	</script>
+</body>
+</html>
