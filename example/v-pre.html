@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>其他内部指令(v-pre & v-cloak & v-once)</title>
+	<script src="../assets/js/vue.js"></script>
+
+</head>
+<body>
+	<div id="app">
+		<h1>v-pre & v-cloak & v-once</h1>
+		<hr>
+		<!-- v-pre 直接原样输出，切断vue的双向绑定方法 -->
+		<div v-pre>{{message}}</div>
+		
+		<!-- v-cloak 渲染完成后再显示 -->
+		<div v-cloak>{{message}} 渲染完成后再显示</div>
+
+		<!-- v-once 只渲染一次，渲染成功后，为静态元素 -->
+		<div v-once>v-once {{message}}</div>
+		<div>没有v-once{{message}}</div>
+		<input type="text" v-model="message">
+	</div>
+	<script>
+		var app = new Vue({
+			el: "#app",
+			data: {
+				message: "Hello World!"
+			}
+		});
+	</script>
+
+</body>
+</html>

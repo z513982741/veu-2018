@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-model实例</title>
+	<script src="../assets/js/vue.js"></script>
+</head>
+<body>
+	<h1>v-model</h1>
+	<hr>
+	<div id="app">
+		<p>原始文本信息： {{message}}</p>
+		<h4>文本框</h4>
+		<p>v-model：<input type="text" v-model.lazy="message"></p>
+		<p>v-model.lazy<input type="text" v-model.lazy="message"></p>
+		<p>v-model.number<input type="text" v-model.number="numberText"></p>
+		<p>v-model.trim<input type="text" v-model.trim="message"></p>
+		<h4>文本域</h4>
+		<p><textarea name="" id="" cols="30" rows="10" v-model="message"></textarea></p>
+		<h4>多选绑定一个值</h4>
+		<p>
+			<input type="checkbox" id="che" v-model="isTrue">
+			<label for="che">{{isTrue}}</label>
+		</p>
+		<hr>
+		<h4>多选绑定一个数组</h4>
+		<p>
+			<input type="checkbox" id="jspang" value="jspang" v-model="web_names">
+			<label for="jspang">jspang</label>
+			<input type="checkbox" id="panda" value="panda" v-model="web_names">
+			<label for="panda">panda</label>
+			<input type="checkbox" id="pang" value="pang" v-model="web_names">
+			<label for="pang">pang</label>
+			<input type="checkbox" id="king" value="king" v-model="web_names">
+			<label for="king">king</label>
+		</p>
+		<p>{{web_names}}</p>
+		<h4>单选绑定一个数组</h4>
+		<p>
+			<input type="radio" id="sex_one" value="男" v-model="sex">
+			<label for="sex_one">男</label>
+			<input type="radio" id="sex_two" value="女" v-model="sex">
+			<label for="sex_two">女</label>
+		</p>
+		<p>你选择的性别是：{{sex}}</p>
+		<h5>下拉框绑定数据</h5>
+		<p>
+			<select name="" id="">
+				<option v-for="(item,index) in items" :key="index" v-text="item.text"></option>	
+			</select>
+		</p>
+	</div>
+	<script>
+		var app = new Vue({
+			el: "#app",
+			data: {
+				message: "Hello World!",
+				numberText: 11111,
+				isTrue: false,
+				web_names: [],
+				sex: "男",
+				items: [
+					{text : "请选择", value : "0"},
+					{text : "小明", value : "1"},
+					{text : "小红", value : "2"},
+					{text : "小黄", value : "3"},
+				]
+
+			}
+		});
+	</script>
+</body>
+</html>
