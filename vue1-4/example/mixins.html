@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>mixins 混入</title>
+	<script src="../assets/js/vue.js"></script>
+</head>
+<body>
+	<h1>mixins 混入</h1>
+	<hr>
+	<div id="app">
+		{{num}}
+		<p><button @click="add">add</button></p>
+	</div>
+	<script>
+		//  混入的第二执行
+		var addConsole = {
+			updated:function(){
+				console.log('数据发生变化，变化成了'+this.num)
+			}
+		};
+		// 全局api最先执行
+		Vue.mixin({
+			updated: function(){
+				console.log('我是全局的混入')
+			}
+		})
+		var app = new Vue({
+			el: '#app',
+			data: {
+				num: 102
+			},
+			methods: {
+				add: function(){
+					this.num++;
+				}
+			},
+			// 原生的最后执行
+			updated: function(){
+				console.log('我是原生的updated'+this.num)
+			},
+			mixins:[addConsole]
+		})
+	</script>
+</body>
+</html>

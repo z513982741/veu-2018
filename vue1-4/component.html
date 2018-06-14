@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js实例</title>
+	<script src="../assets/js/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<component is="componentA" :colors="colors"></component>
+	</div>
+	<script>
+		var app = new Vue({
+			el: "#app",
+			data:{
+				colors: "我是子组件"
+			},
+			components:{
+				"componentA":{
+					template: `
+						<div>
+							{{title}}我是父组件
+							<p><nui :colorA="colors"></nui></p>
+						</div>
+					`,
+					props:['title','colors'],
+					components: {
+						"nui": {
+							template:`<p>{{colorA}}</p>
+							`,
+							props: ['colorA']
+						},
+					}
+				}
+			}
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>实例入门-内置组件</title>
+	<script src="../assets/js/vue.js"></script>
+	<script src="../assets/js/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+	<h1>example slot</h1>
+	<hr>
+	<div id="app">
+		<!-- <nui :text-a="nuiData"></nui> -->
+		<nui :text-a="nuiData">
+			<span slot="bolgUrl">{{nuiData.bolgUrl}}</span>
+			<span slot="netName">{{nuiData.netName}}</span>
+			<span slot="skill">{{nuiData.skill}}</span>
+		</nui>
+	</div>
+	<template id="tep">
+		<div>
+			<p>博客地址：<slot name="bolgUrl"></slot></p>
+			<p>网站名称：<slot name="netName"></slot></p>
+			<p>技术类型：<slot name="skill"></slot></p>
+		</div>
+	</template>
+	<script>
+		var nui = {
+			template:`#tep`,
+			props: ['textA']
+		}
+		var app = new Vue({
+			el: "#app",
+			data: {
+				nuiData:{
+					bolgUrl: 'http://cxbi.com',
+					netName: '疯狂电子管',
+					skill: 'web前端'
+				}
+			},
+			components: {
+				"nui": nui,
+			}
+		});
+		
+	</script>
+</html>

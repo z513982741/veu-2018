@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue.set全局操作</title>
+	<script src="../assets/js/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		{{count}}
+		<ul>
+			<li v-for="(item,index) in arr" :key="index">{{item}}</li>
+		</ul>
+	</div>
+	<p><button onclick="add()">add</button></p>
+	<script>
+		// 外部数据
+		var outData = {
+			count: 1,
+			// goods: 'car'
+			arr: ['a1','b2','c3']
+		}
+		// 引用外部数据
+		var app = new Vue({
+			el:"#app",
+			data: outData
+		})
+
+		function add(){
+			// 当你利用索引直接设置一个项时，vue不会为我们自动更新  当你修改数组的长度时，vue不会为我们自动更新 所以要用 Vue.set
+			Vue.set(app.arr,1,'ddd11');
+			// app.count++;
+			// outData.count++;
+			// app.arr[1] = 'ddd';
+		}
+	</script>
+
+</body>
+</html>
