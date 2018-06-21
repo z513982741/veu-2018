@@ -1,16 +1,15 @@
 <template>
-    <div>
-      <h2>{{msg}}</h2>
-      <router-view></router-view>
-    </div>
+  <div>
+    {{msg}}——{{ $route.params.username }} —— {{$route.params.id}}
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'hi',
+  name: 'hi1',
   data () {
     return {
-      msg: '我是父元素HI'
+      msg: 'Welcome to Your Vue.js App'
     }
   }
 }
